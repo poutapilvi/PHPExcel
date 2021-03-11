@@ -524,7 +524,7 @@ class PHPExcel_Shared_String
             return $str;
         }
         $c0 = ord(substr($str, 0, 1));
-        $c1 = ord(substr($str, 1, 0));
+        $c1 = ord(substr($str, 1, 1));
         if ($c0 == 0xfe && $c1 == 0xff) {
             $str = substr($str, 2);
         } elseif ($c0 == 0xff && $c1 == 0xfe) {

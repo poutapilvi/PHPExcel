@@ -280,16 +280,16 @@ class PHPExcel_Reader_Excel5_Escher
         $foDelay = PHPExcel_Reader_Excel5::getInt4d($recordData, 28);
 
         // offset: 32; size: 1; unused1
-        $unused1 = ord($recordData{32});
+        $unused1 = ord(substr($recordData, 32, 1));
 
         // offset: 33; size: 1; size of nameData in bytes (including null terminator)
-        $cbName = ord($recordData{33});
+        $cbName = ord(substr($recordData, 33, 1));
 
         // offset: 34; size: 1; unused2
-        $unused2 = ord($recordData{34});
+        $unused2 = ord(substr($recordData, 34, 1));
 
         // offset: 35; size: 1; unused3
-        $unused3 = ord($recordData{35});
+        $unused3 = ord(substr($recordData, 35, 1));
 
         // offset: 36; size: $cbName; nameData
         $nameData = substr($recordData, 36, $cbName);
@@ -331,7 +331,7 @@ class PHPExcel_Reader_Excel5_Escher
         }
 
         // offset: var; size: 1; tag
-        $tag = ord($recordData{$pos});
+        $tag = ord(substr($recordData, $pos, 1));
         $pos += 1;
 
         // offset: var; size: var; the raw image data
@@ -372,7 +372,7 @@ class PHPExcel_Reader_Excel5_Escher
         }
 
         // offset: var; size: 1; tag
-        $tag = ord($recordData{$pos});
+        $tag = ord(substr($recordData, $pos, 1));
         $pos += 1;
 
         // offset: var; size: var; the raw image data
