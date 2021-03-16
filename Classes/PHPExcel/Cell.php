@@ -288,9 +288,10 @@ class PHPExcel_Cell
                 }
 //echo 'Calculation Exception: '.$ex->getMessage().PHP_EOL;
                 $result = '#N/A';
-                throw new PHPExcel_Calculation_Exception(
-                    $this->getWorksheet()->getTitle().'!'.$this->getCoordinate().' -> '.$ex->getMessage()
-                );
+				// Suppress error in internal P4 use, because it's non-informative in indexing. (jussi.hattara@poutapilvi.fi)
+                // throw new PHPExcel_Calculation_Exception(
+                //     $this->getWorksheet()->getTitle().'!'.$this->getCoordinate().' -> '.$ex->getMessage()
+                // );
             }
 
             if ($result === '#Not Yet Implemented') {
