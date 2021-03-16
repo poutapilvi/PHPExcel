@@ -3194,6 +3194,7 @@ class PHPExcel_Calculation
                 while ($stack->count() > 0 &&
                     ($o2 = $stack->last()) &&
                     isset(self::$operators[$o2['value']]) &&
+					isset(self::$operatorAssociativity[$opCharacter]) &&
                     @(self::$operatorAssociativity[$opCharacter] ? self::$operatorPrecedence[$opCharacter] < self::$operatorPrecedence[$o2['value']] : self::$operatorPrecedence[$opCharacter] <= self::$operatorPrecedence[$o2['value']])) {
                     $output[] = $stack->pop();                                //    Swap operands and higher precedence operators from the stack to the output
                 }
@@ -3346,7 +3347,7 @@ class PHPExcel_Calculation
 
                     //    If the last entry on the stack was a : operator, then we have a cell range reference
                     $testPrevOp = $stack->last(1);
-                    if ($testPrevOp['value'] == ':') {
+                    if (!empty($testPrevOp['value']) && $testPrevOp['value'] == ':') {
                         //    If we have a worksheet reference, then we're playing with a 3D reference
                         if ($matches[2] == '') {
                             //    Otherwise, we 'inherit' the worksheet reference from the start cell reference
