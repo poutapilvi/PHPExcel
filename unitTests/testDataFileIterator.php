@@ -50,7 +50,7 @@ class testDataFileIterator implements Iterator
         do {
             //    Only take lines that contain test data and that aren't commented out
             $testDataRow = trim(fgets($this->file));
-        } while (($testDataRow > '') && ($testDataRow{0} === '#'));
+        } while (($testDataRow > '') && (mb_substr($testDataRow, 0, 1) === '#'));
 
         //    Discard any comments at the end of the line
         list($testData) = explode('//', $testDataRow);

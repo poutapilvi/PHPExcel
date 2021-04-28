@@ -8,7 +8,7 @@ class complexAssert
 
     public function assertComplexEquals($expected, $actual, $delta = 0)
     {
-        if ($expected{0} === '#') {
+        if (mb_substr($expected, 0, 1) === '#') {
             //    Expecting an error, so we do a straight string comparison
             if ($expected === $actual) {
                 return true;
